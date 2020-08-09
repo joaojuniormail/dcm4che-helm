@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: keycloak
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - env:
+        - name: ARCHIVE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: ARCHIVE_HOST
+              name: dcm4chee-env
+        - name: AUTH_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_SERVER_URL
+              name: dcm4chee-env
+        - name: HTTPS_PORT
+          value: "8843"
+        - name: HTTP_PORT
+          value: "8880"
+        - name: KEYCLOAK_WAIT_FOR
+          value: ldap:389
+        - name: MANAGEMENT_HTTPS_PORT
+          value: "8993"
+        - name: MANAGEMENT_HTTP_PORT
+          value: "8990"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DB
+              name: dcm4chee-env
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_PASSWORD
+              name: dcm4chee-env
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USER
+              name: dcm4chee-env
+        - name: STORAGE_DIR
+          valueFrom:
+            configMapKeyRef:
+              key: STORAGE_DIR
+              name: dcm4chee-env
+        image: dcm4che/keycloak:10.0.2
+        name: keycloak
+        ports:
+        - containerPort: 8880
+        - containerPort: 8843
+        - containerPort: 8990
+        - containerPort: 8993
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/keycloak/standalone
+          name: keycloak-manager-persistent
+      restartPolicy: Always
+      volumes:
+      - name: keycloak-manager-persistent
+        persistentVolumeClaim:
+          claimName: keycloak-manager-persistent
+status: {}

@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  ARCHIVE_HOST: elaudos.local
+  AUTH_SERVER_URL: https://elaudos.local:8843/auth
+  POSTGRES_DB: pacsdb
+  POSTGRES_PASSWORD: pacs
+  POSTGRES_USER: pacs
+  STORAGE_DIR: /storage/fs1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: dcm4chee-env

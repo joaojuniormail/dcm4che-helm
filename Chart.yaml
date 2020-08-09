@@ -1,0 +1,7 @@
+name: dcm4chee
+description: A Helm Chart for dcm4chee 5
+version: 0.0.1
+keywords:
+  - dcm4chee
+sources:
+home:

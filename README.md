@@ -1,2 +1,1 @@
-# dcm4chee5-helm
-Helm chart from dcm4chee 5
+Chart from dcm4chee archive 5
