@@ -5,16 +5,16 @@ metadata:
   name: keycloak
 spec:
   ports:
-  - name: "Keycloak-http"
+  - name: "8880"
     port: 8880
     targetPort: 8880
-  - name: "Keycloak-https"
+  - name: "8843"
     port: 8843
     targetPort: 8843
-  - name: "WildFly-http"
+  - name: "8990"
     port: 8990
     targetPort: 8990
-  - name: "WildFly-https"
+  - name: "8993"
     port: 8993
     targetPort: 8993
 status:
